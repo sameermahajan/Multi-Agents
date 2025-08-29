@@ -59,3 +59,28 @@ builder.add_edge("tools", "assistant")
 
 # Compile graph
 graph = builder.compile(interrupt_before=["tools"])
+
+# Execution
+# Input
+initial_input = {"messages": HumanMessage(content="Multiply 2 and 3")}
+
+# Thread
+thread = {"configurable": {"thread_id": "2"}}
+
+# Run the graph until the first interruption
+for event in graph.stream(initial_input, thread, stream_mode="values"):
+    event['messages'][-1].pretty_print()
+
+# Get user feedback
+user_approval = input("Do you want to call the tool? (yes/no): ")
+
+# Check approval
+if user_approval.lower() == "yes":
+    
+    # If approved, continue the graph execution
+    for event in graph.stream(None, thread, stream_mode="values"):
+        event['messages'][-1].pretty_print()
+        
+else:
+    print("Operation cancelled by user.")
+
