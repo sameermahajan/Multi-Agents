@@ -1,3 +1,11 @@
+# Have a folder with
+#   langgraph.json
+#   all .py specified in above file
+# run
+#   langgraph dev
+# run this program
+#    python api.py
+
 from langgraph_sdk import get_client
 
 # This is the URL of the local development server
@@ -27,3 +35,4 @@ async def main():
             print(chunk.data['messages'][-1])
 
 asyncio.run(main()) # Run the async function
+
