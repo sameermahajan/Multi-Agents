@@ -47,3 +47,11 @@ builder.add_edge("node_3", END)
 
 # Compile graph
 graph = builder.compile()
+
+# Graph Invocation
+graph.invoke({"graph_state" : "Hi, this is Sameer."})
+
+# Streaming
+config = {"configurable": {"thread_id": "2"}}
+for event in graph.stream({"graph_state": "Hi, this is Sameer"}, config, stream_mode="values"):
+    print (event)
