@@ -1,10 +1,17 @@
-from crewai import Agent, Task, Crew
+from crewai import Agent, Task, Crew, LLM
+
+local_llm = LLM(
+    model="ollama/llama3.1",
+    base_url="http://localhost:11434",
+    temperature=0.3
+)
 
 # Reporter Agent
 reporter = Agent(
     role="Reporter",
     goal="Write a short news report about AI in schools",
     backstory="You are a technology journalist.",
+    llm=local_llm,
     verbose=True
 )
 
@@ -13,6 +20,7 @@ editor = Agent(
     role="Editor",
     goal="Improve the news article",
     backstory="You improve clarity and grammar.",
+    llm=local_llm,
     verbose=True
 )
 
@@ -21,6 +29,7 @@ headline_writer = Agent(
     role="Headline Writer",
     goal="Create a catchy headline",
     backstory="You write exciting newspaper headlines.",
+    llm=local_llm,
     verbose=True
 )
 
