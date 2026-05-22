@@ -27,17 +27,20 @@ headline_writer = Agent(
 # Tasks
 task1 = Task(
     description="Write a 100-word article about AI helping students learn.",
-    agent=reporter
+    agent=reporter,
+    expected_output="A 100-word news article about AI's benefits for student learning."
 )
 
 task2 = Task(
     description="Edit the article to make it clearer and more engaging.",
-    agent=editor
+    agent=editor,
+    expected_output="An engaging and grammatically correct version of the provided news article."
 )
 
 task3 = Task(
     description="Create an interesting headline for the article.",
-    agent=headline_writer
+    agent=headline_writer,
+    expected_output="A catchy and exciting headline for the news article."
 )
 
 # Crew
